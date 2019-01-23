@@ -234,7 +234,6 @@
         // bucket up the events
         var ktot = 0;
         for(var q=0,n=es.length;q<n;q++) {
-	    if (es[q].t > ft){break;}
           var kw = es[q];
           var binix = Math.floor((kw.t - t00)/time_bin);
           var news = kevents[binix] + kw.s;
@@ -254,8 +253,6 @@
         if(ktot > maxktot) { maxktot = ktot; }
       }
 
-      console.log(kevents_global);
-
       // draw global key events across all days as line
       var sx = kevents_global.length;
       var bar_width = (W - wmargin) / sx;
@@ -264,7 +261,7 @@
         .attr("width", W)
         .attr("height", H*2);
       var line = d3.svg.line()
-        .x(function(d,i) { return (W - 2*wmargin) * (i) / sx + wmargin; })
+        .x(function(d,i) { return (W - 2*wmargin) * (i*24/hours_to_display) / sx + wmargin; })
         .y(function(d) { return 2*H - d / max_kevents_global * H * 2; });
       svg.append("path")
         .datum(kevents_global)
