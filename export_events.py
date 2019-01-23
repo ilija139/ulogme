@@ -63,6 +63,7 @@ def updateEvents():
   os.system('mkdir -p ' + RENDER_ROOT) # make sure output directory exists
   t = mint
   out_list = []
+
   for t in ts:
     t0 = t
     t1 = t0 + 60*60*24 # 24 hrs later
